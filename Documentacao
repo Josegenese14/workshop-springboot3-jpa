@@ -1,0 +1,15 @@
+//classe UserResource:
+O cliente faz um GET /users.
+
+O Controller chama UserServices.findAll().
+
+//classe UserService
+O UserServices chama UserRepository.findAll() (internamente).
+
+O UserRepository busca os dados no banco de dados.
+
+//classe UserService
+Os dados são retornados como uma lista de objetos User.
+
+//UserResource
+A resposta é devolvida ao cliente com a lista e status HTTP 200.
