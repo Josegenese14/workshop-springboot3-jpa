@@ -13,3 +13,17 @@ Os dados são retornados como uma lista de objetos User.
 
 //UserResource
 A resposta é devolvida ao cliente com a lista e status HTTP 200.
+
+// no postaman não trazia as ordens dos pedidos com o jackson tive que forçar atraves do:
+ @OneToMany(mappedBy = "id.order", fetch = FetchType.EAGER)
+ isso aconteceu também quando precisei ver as cateforias
+ @ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+	private Set<Category> categories = new HashSet<>();
+	
+	usa esse codigo: 
+	(fetch = FetchType.EAGER)
+	
+	
+// Set
+esse tipo de coleções não admitir ter repetições.
