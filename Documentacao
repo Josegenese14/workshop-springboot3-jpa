@@ -27,3 +27,7 @@ A resposta é devolvida ao cliente com a lista e status HTTP 200.
 	
 // Set
 esse tipo de coleções não admitir ter repetições.
+
+//classe dependente coloco
+@OneToOne
+	@MapsId
