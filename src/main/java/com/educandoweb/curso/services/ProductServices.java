@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.educandoweb.curso.entities.Product;
-import com.educandoweb.curso.entities.User;
 import com.educandoweb.curso.repositories.ProductRepository;
 
 @Service
