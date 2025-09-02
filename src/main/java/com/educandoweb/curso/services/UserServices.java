@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.educandoweb.curso.entities.User;
 import com.educandoweb.curso.repositories.UserRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UserServices {
 	
@@ -33,5 +35,18 @@ public class UserServices {
 	public void delete (Long id) {
 		repository.deleteById(id);
 	}
+	
+	@Transactional
+	public User update(Long id, User obj) {
+	    User entity = findById(id); 
+	    updateData(entity, obj);
+	    return repository.save(entity);
+	
+	}
 
+	private void updateData(User entity, User obj) {
+		entity.setName(obj.getName());
+		entity.setEmail(obj.getEmail());
+		entity.setPhone(obj.getPhone());
+	}
 }
