@@ -13,6 +13,7 @@ import com.educandoweb.curso.repositories.UserRepository;
 import com.educandoweb.curso.services.exceptions.DatabaseException;
 import com.educandoweb.curso.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -51,9 +52,13 @@ public class UserServices {
 	//alterar usuario
 	@Transactional
 	public User update(Long id, User obj) {
+		try {
 	    User entity = findById(id); 
 	    updateData(entity, obj);
 	    return repository.save(entity);
+		} catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	
 	}
 
