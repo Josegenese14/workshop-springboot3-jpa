@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.educandoweb.curso.entities.User;
 import com.educandoweb.curso.repositories.UserRepository;
+import com.educandoweb.curso.services.exceptions.ResourceNotFoundException;
 
 import jakarta.transaction.Transactional;
 
@@ -24,7 +25,7 @@ public class UserServices {
 
 	public User findById(Long id) {
 		Optional<User> obj= repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	//retornar usuario salvo
@@ -32,10 +33,12 @@ public class UserServices {
 		return repository.save(obj);
 	}
 	
+	//deletar usuario
 	public void delete (Long id) {
 		repository.deleteById(id);
 	}
 	
+	//alterar usuario
 	@Transactional
 	public User update(Long id, User obj) {
 	    User entity = findById(id); 
